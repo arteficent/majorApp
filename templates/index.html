@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sentiment Prediction</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+ <div class="login">
+	<h1>Sentiment Prediction</h1>
+     <h3> Enter the data</h3>
+
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="input1" placeholder="Enter keyword for tweets" required="required" />
+      <input type="text" name="input2" placeholder="Enter number of tweets" required="required" />
+		  <!-- <input type="text" name="input3" placeholder="input 3" required="required" /> -->
+      <select type="text" name="input3" id="input3">
+        <option value="" disabled selected>Select model</option>
+        <option value="decision_tree">Decision Tree</option>
+        <option value="support_vector_machine">Support vector machine</option>
+        <option value="logistic_regression">Logistic regression</option>
+        <option value="random_forest">Random forest</option>
+        <option value="XGBoost">XGBoost</option>
+      </select>
+      <button type="submit" class="btn">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+    <ul> 
+    {% for tweet in tweets %} 
+      <li>{{ tweet }}</li> 
+    {% endfor %} 
+    </ul>    
+ </div>
+
+
+</body>
+</html>
